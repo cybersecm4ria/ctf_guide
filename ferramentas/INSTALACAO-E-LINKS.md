@@ -8,18 +8,34 @@ Se você estiver em Kali, quase tudo já vem instalado. Pra garantir, rode:
 
 ```bash
 sudo apt update && sudo apt install -y \
-  binwalk steghide exiftool foremost \
-  gobuster ffuf john \
+  binwalk steghide exiftool foremost scalpel \
+  gobuster ffuf john hashcat hashid sqlmap \
   wireshark tshark \
-  gdb ltrace \
-  zbar-tools audacity
+  gdb ltrace strace radare2 \
+  zbar-tools audacity \
+  stegseek outguess
 
-# zsteg e RsaCtfTool vêm por outros gerenciadores:
+# vêm por outros gerenciadores:
 sudo gem install zsteg
-pip install pwntools
+pip install pwntools angr                 # pwn + resolver crackme automático
+pip install pycryptodome                  # RSA/AES em Python
+
+# ferramentas em git (clone se precisar):
+#   RsaCtfTool, xortool, jwt_tool, pyinstxtractor, ROPgadget, Ghidra, Stegsolve
 
 # wordlist rockyou (pra quebrar senhas) — descompacte se necessário:
 sudo gunzip /usr/share/wordlists/rockyou.txt.gz 2>/dev/null
+```
+
+## Ferramentas avançadas por categoria (instalação rápida)
+
+```bash
+pip install ROPgadget                      # pwn: gadgets pra ROP
+pip install uncompyle6 decompyle3          # reversing: decompila .pyc
+# angr já instalado acima (reversing: execução simbólica)
+# RsaCtfTool: git clone https://github.com/RsaCtfTool/RsaCtfTool
+# xortool:    pip install xortool
+# jwt_tool:   git clone https://github.com/ticarpi/jwt_tool
 ```
 
 Testar se um comando existe:

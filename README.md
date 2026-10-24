@@ -78,13 +78,31 @@ em qualquer arquivo. Eles revelam a natureza do que você tem nas mãos.
 
 ## 6. Pastas deste repositório
 
-- `01-web/` — passo a passo de exploração web
-- `02-osint-misc/` — busca, metadados, Google dorking
-- `03-cripto/` — decodificação em camadas, cifras
-- `04-forense/` — arquivos, imagens, pcap, estego **(sua força)**
-- `05-reversing/` — binários, análise estática
-- `06-pwn/` — exploração de memória (avançado)
+Cada categoria tem DOIS arquivos: `GUIA.md` (básico, por onde começar) e
+`AVANCADO.md` (técnicas de nível de final de campeonato).
+
+- `01-web/` — exploração web (SQLi, SSTI→RCE, LFI, SSRF, JWT, upload…)
+- `02-osint-misc/` — busca, metadados, geolocalização, misc
+- `03-cripto/` — decodificação em camadas, XOR, RSA, cifras
+- `04-forense/` — arquivos, pcap, estego, memória, carving **(sua força)**
+- `05-reversing/` — binários, Ghidra, angr, ltrace
+- `06-pwn/` — exploração de memória (ret2win, ROP, format string)
 - `ferramentas/` — cola de instalação e links salva-vidas
+- `scripts/` — **SCRIPTS CORINGA** pra rodar na hora (veja abaixo)
+
+## 7. Scripts coringa (pasta `scripts/`) — rode na hora
+
+| Script | Pra quê | Como rodar |
+|--------|---------|------------|
+| `decoder.py` | descasca base64/hex/binário/césar/morse em camadas e acha a flag | `python3 scripts/decoder.py "TEXTO"` |
+| `xor_brute.py` | quebra XOR de 1 byte e por known-plaintext | `python3 scripts/xor_brute.py <hex>` |
+| `flag_hunter.py`→`.sh` | varre pasta inteira (texto, binário, base64) atrás da flag | `bash scripts/flag_hunter.sh .` |
+| `forense_triage.sh` | roda file+exif+strings+binwalk+estego de uma vez num arquivo | `bash scripts/forense_triage.sh arq.jpg` |
+| `web_recon.sh` | recon de alvo web (robots, comentários, caminhos, cookies) | `bash scripts/web_recon.sh http://alvo:porta` |
+| `pwn_template.py` | esqueleto de exploit pwntools (ret2win) pra preencher | editar e `python3 scripts/pwn_template.py` |
+
+> Fluxo rápido pra arquivo misterioso: `forense_triage.sh arq` → se achar embutidos,
+> `flag_hunter.sh /tmp/triage_extract` → se achar texto cifrado, `decoder.py`.
 
 ---
 
